@@ -2,7 +2,7 @@ public class KonkSvømmer extends Svømmer{
     String disciplin;
 
     //Constructor
-    public KonkSvømmer(String navn, int alder, String tlf, String status, String aktivitet, String disciplin) {
+    public KonkSvømmer(String navn, int alder, String tlf, String status, String disciplin) {
         super(navn, alder, tlf, status, "konkurrence");
         this.disciplin=disciplin;
     }

@@ -52,6 +52,19 @@ public abstract class Svømmer {
         return aktivitet;
     }
 
+    public int beregnKontingent(){
+         int kVærdi=0;
+         if(status.equals("passiv"))
+             kVærdi=500;
+         if(alder<18)
+             kVærdi=1000;
+         if(alder<60)
+             kVærdi=1600;
+         if(alder>=60)
+             kVærdi=1200;
+         return kVærdi;
+    }
+
     @Override
     public String toString(){
         return "\n"+
