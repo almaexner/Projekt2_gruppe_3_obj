@@ -34,6 +34,9 @@ public abstract class Svømmer {
     public String getAktivitet(){
          return aktivitet;
     }
+    public String getAlt(){
+         return tlf+";"+navn+";"+alder+";"+status+";"+aktivitet;
+    }
 
     //setters
     public String setNavn(){

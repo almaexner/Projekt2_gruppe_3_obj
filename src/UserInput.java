@@ -7,6 +7,14 @@ public class UserInput {
         this.keyboard=keyboard;
     }
 
+    public void menu(){
+        String test = "hej";
+        switch (test){
+            case "hej":
+                System.out.println("hej");
+                break;
+        }
+    }
     public Svømmer opretSvømmer(){
         System.out.println("Indtast navn: ");
         String navn=keyboard.nextLine();

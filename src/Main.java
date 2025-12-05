@@ -4,6 +4,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner keyboard=new Scanner(System.in);
         UserInput test=new UserInput(keyboard);
+        test.menu();
 
         Svømmer t1 =test.opretSvømmer();
         System.out.println(t1);
