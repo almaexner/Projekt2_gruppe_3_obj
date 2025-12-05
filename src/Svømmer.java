@@ -1,14 +1,13 @@
 import java.io.IOException;
 import java.util.Scanner;
 
-public class Svømmer {
-
+public abstract class Svømmer {
     //Variabler
-    private String navn;
-    private int alder;
-    private String tlf;
-    private String status; //aktiv/passiv
-    private String aktivitet; //motionist/konkurrence
+    protected String navn;
+    protected int alder;
+    protected String tlf;
+    protected String status; //aktiv/passiv
+    protected String aktivitet; //motionist/konkurrence
 
     //Constructor
      public Svømmer(String navn, int alder, String tlf, String status, String aktivitet){
@@ -33,7 +32,7 @@ public class Svømmer {
         return status;
     }
     public String getAktivitet(){
-        return aktivitet;
+         return aktivitet;
     }
 
     //setters
@@ -60,10 +59,10 @@ public class Svømmer {
                 "Alder: "+alder+"\n"+
                 "Telefonnr: "+tlf+"\n"+
                 "Status: "+status+"\n"+
-                "Aktivitet: "+aktivitet;
+                "Aktivitet: "+aktivitet+"\n";
     }
 
-    public static Svømmer opretSvømmer() {
+ /*   public static Svømmer opretSvømmer() {
 
          Scanner keyboard = new Scanner(System.in);
         System.out.println("Indtast navn: ");
@@ -118,10 +117,10 @@ public class Svømmer {
             }
         }
        // Fil.gemFil(tlf+";"+navn+";"+alder+";"+status+";"+aktivitet+";"+kontingent(status,alder), "svømmerFil.txt");
-        Svømmer s = new Svømmer(navn, alder, tlf, status, aktivitet);
-        return s;
-    }
-    public static void main(String[] args) {
-        Svømmer s=opretSvømmer();
-    }
+      //  Svømmer s = new Svømmer(navn, alder, tlf, status, aktivitet);
+        return Svømmer.opretSvømmer();
+    }*/
+  //  public static void main(String[] args) {
+      //  Svømmer s=opretSvømmer();
+  //  }
 }
