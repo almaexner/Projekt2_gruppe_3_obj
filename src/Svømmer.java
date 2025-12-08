@@ -10,7 +10,7 @@ public abstract class Svømmer {
     protected String aktivitet; //motionist/konkurrence
 
     //Constructor
-     public Svømmer(String navn, int alder, String tlf, String status, String aktivitet){
+    public Svømmer(String navn, int alder, String tlf, String status, String aktivitet){
         this.navn=navn;
         this.alder=alder;
         this.tlf=tlf;
@@ -32,21 +32,22 @@ public abstract class Svømmer {
         return status;
     }
     public String getAktivitet(){
-         return aktivitet;
+        return aktivitet;
     }
     public String getAlt(){
-         return tlf+";"+navn+";"+alder+";"+status+";"+aktivitet;
+        return tlf+";"+navn+";"+alder+";"+status+";"+aktivitet;
     }
 
     //setters
-    public String setNavn(){
-        return navn;
+    public void setNavn(String nyNavn){
+        this.navn = nyNavn;
     }
     public int setAlder(){
         return alder;
     }
-    public String setTlf(){
-        return tlf;
+    public void setTlf(String nyTlf){
+        this.tlf = nyTlf;
+        // return tlf;
     }
     public String setStatus(){
         return status;

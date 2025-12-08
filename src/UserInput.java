@@ -13,6 +13,7 @@ public class UserInput {
             case "hej":
                 System.out.println("hej");
                 break;
+
         }
     }
     public Svømmer opretSvømmer(){
@@ -90,5 +91,4 @@ public class UserInput {
             System.out.println("Forkert input. Prøv igen.");
         }
     }
-
 }

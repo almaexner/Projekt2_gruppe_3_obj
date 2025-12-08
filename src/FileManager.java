@@ -1,4 +1,7 @@
+import com.sun.source.tree.SwitchTree;
+
 import java.io.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import static java.lang.Integer.parseInt;
@@ -6,25 +9,33 @@ import static java.lang.Integer.parseInt;
 public class FileManager {
     FileReader fraFil;
     static ArrayList<MotionistSvømmer> motionistFil = new ArrayList<>();
-    //ArrayList<TestObjekt> fil2;
+    static ArrayList<KonkSvømmer> konkurrencistFil = new ArrayList<>();
 
-    // Tekstlinjerne fra alle filer læses, bliver omdannet til deres respæktive objekttyper,
+    // Tekstlinjerne fra alle filer læses og bliver omdannet til deres respæktive objekttyper,
     // som så bliver lagt i ArrayLister, der også passer med filerne - Altså er der en ArrayListe til hver fil.
     public static void loadFiles(){
-        Boolean keepGoing = true;
-        while (keepGoing){
-            motionistFil.clear();
-            try(BufferedReader bReader = new BufferedReader(new FileReader("svømmerFil.txt"))){
+        String[] filer = {"Motionister.txt","Konkurrencister.txt"};
+        String filNavn;
+        int antalFiler = filer.length;
+        for (int i = 0; i<antalFiler; i++){
+            //motionistFil.clear();
+            filNavn = filer[i];
+            try(BufferedReader bReader = new BufferedReader(new FileReader(filNavn))){
                 String linje;
-                while ((linje = bReader.readLine()) != null ){
-                    String[] bidder = linje.split(";");
-                    int antalBidder = bidder.length;
-                    motionistFil.add(new MotionistSvømmer(bidder[0], parseInt(bidder[1]), bidder[2], bidder[3]));
+                switch (filNavn){
+                    case "Motionister.txt":
+                        while ((linje = bReader.readLine()) != null ){
+                            String[] bidder = linje.split(";");
+                            // int antalBidder = bidder.length;
+                            motionistFil.add(new MotionistSvømmer(bidder[0], parseInt(bidder[1]), bidder[2], bidder[3]));
+                        }
+                        break;
+                    case "Konkurrencister.txt":
+                        break;
                 }
             } catch (IOException e){
                 System.out.println("Fejl ved loading af fil-ArrayLister");
             }
-            keepGoing = false;
         }
     }
     // Gemmer IKKE på filen, men blot på en ArrayList, gemTilFil() skal kaldes for at gemme fra ArrayListen til dens fil
@@ -84,13 +95,59 @@ public class FileManager {
         }
     }
 
-    // Bør være ligetil at lave nu
-    public void redigerFil(String filNavn, int findIndex, int retIndex, String retTil){
 
+    // Bør være ligetil at lave nu
+    public void redigerArrayList(String filNavn, String findIndex, int retIndex, String retTil){
+        int size;
+        switch (filNavn){
+            case "Motionister.txt":
+                size = motionistFil.size();
+                for (int i=0; i<size; i++){
+                    if (motionistFil.get(i).getTlf().equals(findIndex)){
+                        indexMotionist(retIndex, retTil, i);
+                    }
+                    /*String linje = motionistFil.get(i).getAlt();
+                    String[] bidder = linje.split(";");
+                    if (bidder[0].equals(findIndex)){
+
+                    } */
+                }
+                break;
+            case "Konkurrencister.txt":
+                size = konkurrencistFil.size();
+                for (int i=0; i<size; i++){
+                    if (konkurrencistFil.get(i).getTlf().equals(findIndex)){
+                        indexKonkurrencist(retIndex, retTil, i);
+                    }
+                }
+                break;
+        }
     }
 
-    public void sletObjekt(){
-        MotionistSvømmer mS = motionistFil.remove(0);
+    public void indexMotionist(int retIndex, String retTil, int i){
+        switch (retIndex){
+            case 0:
+                motionistFil.get(i).setTlf(retTil);
+            case 1:
+                motionistFil.get(i).setNavn(retTil);
+
+        }
+    }
+
+    public void indexKonkurrencist(int retIndex, String retTil, int i){
+        switch (retIndex){
+            case 0:
+                break;
+        }
+    }
+
+    public void sletObjekt(String filNavn, String findIndex){
+        int size;
+        switch (filNavn){
+            case "Motionister.txt":
+
+                break;
+        }
     }
 
     // Ikke sikker på hvad denne skal bruges til

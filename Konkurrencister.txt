@@ -1,0 +1,3 @@
+50501093;Alma;26;aktiv;rygCrawl;
+50501093;Alma;26;aktiv;rygCrawl
+50501093;Alma;26;aktiv;butterfly
