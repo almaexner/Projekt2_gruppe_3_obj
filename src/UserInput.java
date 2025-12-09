@@ -18,8 +18,13 @@ public class UserInput {
             case "1":
                 System.out.println("Opret ny Svømmer");
                 opretSvømmer();
-                System.out.println("Svømmer er oprettet og gemt.");
                 break;
+            case "2":
+                break;
+            case"3":
+                System.out.println("Slet svømmer");
+
+
         }
     }
     public /*Svømmer*/void opretSvømmer(){
@@ -46,9 +51,9 @@ public class UserInput {
             String disciplin=vælgDisciplin();
            KonkSvømmer ks= new KonkSvømmer(tlf,navn,alder,status,disciplin);
            FileManager.konkurrencistFil.add(ks);
-           fM.gemTilFil("Konkurrencist.txt");
+           fM.gemTilFil("Konkurrencister.txt");
             /*objektStreng = tlf+";"+navn+";"+alder+";"+status+";"+disciplin;
-            fM.tilføjTilArrayList("Konkurrencist.txt", objektStreng);*/
+            fM.tilføjTilArrayList("Konkurrencister.txt", objektStreng);*/
             //return new KonkSvømmer(navn,alder,tlf,status,disciplin);
         }else{
             MotionistSvømmer ms=new MotionistSvømmer(tlf,navn,alder,status);
@@ -90,9 +95,9 @@ public class UserInput {
     private String vælgDisciplin(){
         while(true){
             System.out.println("Vælg disciplin: \n"+
-                    "1. Rygcrawl"+
-                    "2. Butterfly"+
-                    "3. Brystsvømning"+
+                    "1. Rygcrawl\n"+
+                    "2. Butterfly\n"+
+                    "3. Brystsvømning\n"+
                     "4. Crawl");
             int valg= keyboard.nextInt();
             keyboard.nextLine();
@@ -106,5 +111,10 @@ public class UserInput {
                 return "crawl";
             System.out.println("Forkert input. Prøv igen.");
         }
+    }
+    public void redigerSvømmer(){
+        FileManager.loadFiles();
+        System.out.println("Indtast svømmers telefonnummer: ");
+
     }
 }

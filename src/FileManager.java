@@ -99,7 +99,7 @@ public class FileManager {
                 }
                 break;
             }
-            System.out.println("Gemt objekter til fil: "+filNavn);
+            System.out.println("Svømmer er gemt i filen: "+filNavn);
     }
 
     public void redigerArrayList(String filNavn, String findIndex, int retIndex, String retTil){
