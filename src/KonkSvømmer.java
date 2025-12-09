@@ -28,8 +28,8 @@ public class KonkSvømmer extends Svømmer{
 
 
     @Override
-    public String toString(){
-        return super.toString()+"Disciplin: "+disciplin+"\n";
+    public String lavFilLinje(){
+        return super.lavFilLinje()+";"+disciplin;
     }
 
 }

@@ -8,16 +8,21 @@ public class UserInput {
         this.keyboard=keyboard;
     }
 
-    public void menu(int valg){
-        switch (valg){
-            case 0:
-                System.out.println("//sout 1 i menu()\\\\");
-                fM.sletObjekt("Motionister.txt","202102");
+    public void menu() {
+        System.out.println("Svømmeklubben Delfinen");
+        System.out.println("1. Opret ny svømmer\n" +
+                "2. Rediger\n" +
+                "3. ");
+        String userInput = keyboard.nextLine();
+        switch (userInput) {
+            case "1":
+                System.out.println("Opret ny Svømmer");
+                opretSvømmer();
+                System.out.println("Svømmer er oprettet og gemt.");
                 break;
-
         }
     }
-    public /*Svømmer*/ void opretSvømmer(){
+    public /*Svømmer*/void opretSvømmer(){
         System.out.println("Indtast navn: ");
         String navn=keyboard.nextLine();
         System.out.println("Indtast alder: ");
@@ -39,17 +44,23 @@ public class UserInput {
         String aktivitet=vælgAktivitet();
         if(aktivitet.equals("konkurrence")){
             String disciplin=vælgDisciplin();
-            objektStreng = tlf+";"+navn+";"+alder+";"+status+";"+disciplin;
-            fM.tilføjTilArrayList("Konkurrencist.txt", objektStreng);
+           KonkSvømmer ks= new KonkSvømmer(tlf,navn,alder,status,disciplin);
+           FileManager.konkurrencistFil.add(ks);
+           fM.gemTilFil("Konkurrencist.txt");
+            /*objektStreng = tlf+";"+navn+";"+alder+";"+status+";"+disciplin;
+            fM.tilføjTilArrayList("Konkurrencist.txt", objektStreng);*/
             //return new KonkSvømmer(navn,alder,tlf,status,disciplin);
         }else{
-            fM.tilføjTilArrayList("Motionister.txt",tlf+";"+navn+";"+alder+";"+status);
+            MotionistSvømmer ms=new MotionistSvømmer(tlf,navn,alder,status);
+            FileManager.motionistFil.add(ms);
+            fM.gemTilFil("Motionister.txt");
+          //  fM.tilføjTilArrayList("Motionister.txt",tlf+";"+navn+";"+alder+";"+status);
             //return new MotionistSvømmer(navn,alder,tlf,status);
         }
     }
     private String vælgStatus(){
         while(true){
-            System.out.println("Vælg status: "+
+            System.out.println("Vælg status: \n"+
                     "1. aktiv\n" +
                     "2. passiv");
             int valg=keyboard.nextInt();
@@ -64,7 +75,7 @@ public class UserInput {
     private String vælgAktivitet(){
         while(true){
             System.out.println("Vælg aktivitet: \n"+
-                    "1. motionist"+
+                    "1. motionist \n"+
                     "2. konkurrence");
             int valg= keyboard.nextInt();
             keyboard.nextLine();
