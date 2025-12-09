@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import static java.lang.Integer.parseInt;
 
 public class FileManager {
-    FileReader fraFil;
     static ArrayList<MotionistSvømmer> motionistFil = new ArrayList<>();
     static ArrayList<KonkSvømmer> konkurrencistFil = new ArrayList<>();
     static ArrayList<Stævne> stævneFil = new ArrayList<>();
@@ -12,7 +11,7 @@ public class FileManager {
     // Tekstlinjerne fra alle filer læses og bliver omdannet til deres respæktive objekttyper,
     // som så bliver lagt i ArrayLister, der også passer med filerne - Altså er der en ArrayListe til hver fil.
     public static void loadFiles(){
-        String[] filer = {"Motionister.txt","Konkurrencister.txt"};
+        String[] filer = {"Motionister.txt","Konkurrencister.txt", "Stævner.txt"};
         String filNavn;
         int antalFiler = filer.length;
         for (int i = 0; i<antalFiler; i++){
@@ -33,6 +32,12 @@ public class FileManager {
                             konkurrencistFil.add(new KonkSvømmer(bidder[0], bidder[1], parseInt(bidder[2]), bidder[3], bidder[4]));
                         }
                         break;
+                    case "Stævner.txt":
+                        while ((linje = bReader.readLine()) != null){
+                            String[] bidder = linje.split(";");
+                            stævneFil.add(new Stævne(bidder[0], bidder[1], bidder[2], bidder[3], bidder[4], bidder[5], bidder[6]));
+                        }
+                        break;
                 }
             } catch (IOException e){
                 System.out.println("Fejl ved loading af fil-ArrayLister");
@@ -46,8 +51,8 @@ public class FileManager {
         switch (filNavn){ // I første omgang gemmes tekststrengen som objekt i ArrayListen for den givne fil
             case "Motionister.txt":
                 motionistFil.add(new MotionistSvømmer(bidder[0],bidder[1], parseInt(bidder[2]), bidder[3]));
-
                 break;
+
             case "Konkurrencister.txt":
                 konkurrencistFil.add(new KonkSvømmer(bidder[0], bidder[1], parseInt(bidder[2]), bidder[3], bidder[4]));
                 break;
@@ -77,18 +82,20 @@ public class FileManager {
             System.out.println("Fejl ved rydning af fil: "+filNavn);
         }
 
-        int size;
         switch (filNavn){
             case "Motionister.txt":
-                size = motionistFil.size();
-                for (int j=0; j<size; j++){
+                for (int j=0; j<motionistFil.size(); j++){
                     skrivTilFil(filNavn, motionistFil.get(j).getAlt());
                 }
                 break;
             case "Konkurrencister.txt":
-                size = konkurrencistFil.size();
-                for (int j=0; j<size; j++){
+                for (int j=0; j<konkurrencistFil.size(); j++){
                     skrivTilFil(filNavn, konkurrencistFil.get(j).getAlt());
+                }
+                break;
+            case "Stævner.txt":
+                for (int j=0; j<stævneFil.size(); j++){
+                    skrivTilFil(filNavn, stævneFil.get(j).getAlt());
                 }
                 break;
             }
@@ -104,6 +111,7 @@ public class FileManager {
                         break;
                     }
                 }
+                break;
             case "Konkurrencister.txt":
                 for (int i=0; i<konkurrencistFil.size(); i++){
                     if (konkurrencistFil.get(i).getTlf().equals(findIndex)){
@@ -111,7 +119,14 @@ public class FileManager {
                         break;
                     }
                 }
+                break;
             case "Stævner.txt":
+                for (int i=0; i<stævneFil.size(); i++){
+                    if (stævneFil.get(i).getTlf().equals(findIndex)){
+                        indexStævne(retIndex, retTil, i);
+                        break;
+                    }
+                }
                 break;
         }
         gemTilFil(filNavn);
@@ -157,6 +172,13 @@ public class FileManager {
                 break;
         }
     }
+
+    public void indexStævne(int retIndex, String retTil, int i){
+        switch (retIndex){
+            case 0:
+                stævneFil.get(i);
+        }
+    }
     // sletter et objekt fra en ArrayList
     public void sletObjekt(String filNavn, String findIndex){
         switch (filNavn){
@@ -167,14 +189,25 @@ public class FileManager {
                        break;
                    }
                 }
+            case "Konkurrencister.txt":
+                break;
+            case "Stævner.txt":
                 break;
         }
         gemTilFil(filNavn);
     }
     // Hvad skal den her helt præcist?
-    public String læsFraArray(String filNavn, String findIndex, int getIndex){
+    public String læsFraArray(String findIndex){
+        int antalArrayLister = 3;
 
-        return "hej";
+        String fundet = "";
+
+        for (int i=0; i<antalArrayLister; i++)
+            switch (i){
+                case 0:
+
+            }
+        return fundet;
     }
     // Ikke sikker på hvad denne skal bruges til
     public String toString(int index){
