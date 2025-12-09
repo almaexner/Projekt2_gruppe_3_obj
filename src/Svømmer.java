@@ -66,14 +66,8 @@ public abstract class Svømmer {
          return kVærdi;
     }
 
-    @Override
-    public String toString(){
-        return "\n"+
-                "Navn: "+navn+"\n"+
-                "Alder: "+alder+"\n"+
-                "Telefonnr: "+tlf+"\n"+
-                "Status: "+status+"\n"+
-                "Aktivitet: "+aktivitet+"\n";
+    public String lavFilLinje(){
+        return tlf+";"+navn+";"+status+";"+aktivitet+";"+beregnKontingent();
     }
 
  /*   public static Svømmer opretSvømmer() {
