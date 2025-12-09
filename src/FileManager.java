@@ -7,7 +7,7 @@ public class FileManager {
     FileReader fraFil;
     static ArrayList<MotionistSvømmer> motionistFil = new ArrayList<>();
     static ArrayList<KonkSvømmer> konkurrencistFil = new ArrayList<>();
-    static ArrayList<String> stævneFil = new ArrayList<>();
+    static ArrayList<Stævne> stævneFil = new ArrayList<>();
 
     // Tekstlinjerne fra alle filer læses og bliver omdannet til deres respæktive objekttyper,
     // som så bliver lagt i ArrayLister, der også passer med filerne - Altså er der en ArrayListe til hver fil.
@@ -53,6 +53,7 @@ public class FileManager {
                 break;
 
             case "Stævner.txt":
+                stævneFil.add(new Stævne(bidder[0],bidder[1],bidder[2],bidder[3],bidder[4],bidder[5],bidder[6]));
                 break;
         }
         gemTilFil(filNavn);

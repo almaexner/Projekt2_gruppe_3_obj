@@ -1,5 +1,4 @@
 101020;Alma;22;aktiv;motionist
-202102;Nicklas;24;passiv;motionist
 123123;Estera;23;aktiv;motionist
 191919;Nicky;99;aktiv;motionist
 50501093;Alma;26;aktiv;motionist
