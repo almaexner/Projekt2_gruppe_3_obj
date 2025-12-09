@@ -1,22 +1,23 @@
 import java.util.Scanner;
 
 public class UserInput {
+    FileManager fM = new FileManager();
     private final Scanner keyboard;
 
     public UserInput(Scanner keyboard){
         this.keyboard=keyboard;
     }
 
-    public void menu(){
-        String test = "hej";
-        switch (test){
-            case "hej":
-                System.out.println("hej");
+    public void menu(int valg){
+        switch (valg){
+            case 0:
+                System.out.println("//sout 1 i menu()\\\\");
+                fM.sletObjekt("Motionister.txt","202102");
                 break;
 
         }
     }
-    public Svømmer opretSvømmer(){
+    public /*Svømmer*/ void opretSvømmer(){
         System.out.println("Indtast navn: ");
         String navn=keyboard.nextLine();
         System.out.println("Indtast alder: ");
@@ -33,13 +34,17 @@ public class UserInput {
                 System.out.println("Ugyldigt telefonnummer. Prøv igen.");
             }
         }
+        String objektStreng;
         String status=vælgStatus();
         String aktivitet=vælgAktivitet();
         if(aktivitet.equals("konkurrence")){
             String disciplin=vælgDisciplin();
-            return new KonkSvømmer(navn,alder,tlf,status,disciplin);
+            objektStreng = tlf+";"+navn+";"+alder+";"+status+";"+disciplin;
+            fM.tilføjTilArrayList("Konkurrencist.txt", objektStreng);
+            //return new KonkSvømmer(navn,alder,tlf,status,disciplin);
         }else{
-            return new MotionistSvømmer(navn,alder,tlf,status);
+            fM.tilføjTilArrayList("Motionister.txt",tlf+";"+navn+";"+alder+";"+status);
+            //return new MotionistSvømmer(navn,alder,tlf,status);
         }
     }
     private String vælgStatus(){
