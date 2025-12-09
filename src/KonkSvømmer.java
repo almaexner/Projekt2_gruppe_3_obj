@@ -3,8 +3,8 @@ public class KonkSvømmer extends Svømmer{
     int disciplinTid;
 
     //Constructor
-    public KonkSvømmer(String navn, int alder, String tlf, String status, String disciplin) {
-        super(navn, alder, tlf, status, "konkurrence");
+    public KonkSvømmer(String tlf, String navn, int alder, String status, String disciplin) {
+        super(tlf, navn, alder, status, "konkurrence");
         this.disciplin=disciplin;
     }
 
@@ -12,14 +12,20 @@ public class KonkSvømmer extends Svømmer{
     public String getDisciplin(){
         return disciplin;
     }
+
+    public String getAlt(){
+        return tlf+";"+navn+";"+alder+";"+status+";"+disciplin+";"+disciplinTid;
+    }
     //setter
-    public String setDisciplin(){
-        return disciplin;
+    public void setDisciplin(String nyDisciplin){
+        this.disciplin = nyDisciplin;
     }
 
-    public void setDisciplinTid(int tid){
-        this.disciplinTid = tid;
+    public void setDisciplinTid(int nyTid){
+        this.disciplinTid = nyTid;
     }
+
+
 
     @Override
     public String toString(){

@@ -1,6 +1,3 @@
-import java.io.IOException;
-import java.util.Scanner;
-
 public abstract class Svømmer {
     //Variabler
     protected String navn;
@@ -10,7 +7,7 @@ public abstract class Svømmer {
     protected String aktivitet; //motionist/konkurrence
 
     //Constructor
-    public Svømmer(String navn, int alder, String tlf, String status, String aktivitet){
+    public Svømmer(String tlf, String navn, int alder, String status, String aktivitet){
         this.navn=navn;
         this.alder=alder;
         this.tlf=tlf;
@@ -42,18 +39,18 @@ public abstract class Svømmer {
     public void setNavn(String nyNavn){
         this.navn = nyNavn;
     }
-    public int setAlder(){
-        return alder;
+    public void setAlder(int nyAlder){
+        this.alder= nyAlder;
     }
     public void setTlf(String nyTlf){
         this.tlf = nyTlf;
         // return tlf;
     }
-    public String setStatus(){
-        return status;
+    public void setStatus(String nyStatus){
+        this.status = nyStatus;
     }
-    public String setAktivitet(){
-        return aktivitet;
+    public void setAktivitet(String nyAktivitet){
+        this.aktivitet = nyAktivitet;
     }
 
     public int beregnKontingent(){

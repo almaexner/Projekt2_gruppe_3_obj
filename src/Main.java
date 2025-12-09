@@ -5,9 +5,7 @@ public class Main {
         FileManager.loadFiles();
         Scanner keyboard=new Scanner(System.in);
         UserInput test=new UserInput(keyboard);
-        test.menu();
+        test.menu(0);
 
-        Svømmer t1 =test.opretSvømmer();
-        System.out.println(t1);
     }
 }
