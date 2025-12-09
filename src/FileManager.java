@@ -49,7 +49,7 @@ public class FileManager {
 
                 break;
             case "Konkurrencister.txt":
-                konkurrencistFil.add(new KonkSvømmer(bidder[0], bidder[2], parseInt(bidder[1]), bidder[3], bidder[4]));
+                konkurrencistFil.add(new KonkSvømmer(bidder[0], bidder[1], parseInt(bidder[2]), bidder[3], bidder[4]));
                 break;
 
             case "Stævner.txt":
