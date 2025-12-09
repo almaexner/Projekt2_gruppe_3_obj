@@ -27,7 +27,7 @@ public class UserInput {
 
         }
     }
-    public /*Svømmer*/void opretSvømmer(){
+    public void opretSvømmer(){
         System.out.println("Indtast navn: ");
         String navn=keyboard.nextLine();
         System.out.println("Indtast alder: ");
@@ -44,23 +44,13 @@ public class UserInput {
                 System.out.println("Ugyldigt telefonnummer. Prøv igen.");
             }
         }
-        String objektStreng;
         String status=vælgStatus();
         String aktivitet=vælgAktivitet();
         if(aktivitet.equals("konkurrence")){
             String disciplin=vælgDisciplin();
-           KonkSvømmer ks= new KonkSvømmer(tlf,navn,alder,status,disciplin);
-           FileManager.konkurrencistFil.add(ks);
-           fM.gemTilFil("Konkurrencister.txt");
-            /*objektStreng = tlf+";"+navn+";"+alder+";"+status+";"+disciplin;
-            fM.tilføjTilArrayList("Konkurrencister.txt", objektStreng);*/
-            //return new KonkSvømmer(navn,alder,tlf,status,disciplin);
+            fM.tilføjTilArrayList("Konkurrencister.txt", tlf+";"+navn+";"+alder+";"+status+";"+disciplin);
         }else{
-            MotionistSvømmer ms=new MotionistSvømmer(tlf,navn,alder,status);
-            FileManager.motionistFil.add(ms);
-            fM.gemTilFil("Motionister.txt");
-          //  fM.tilføjTilArrayList("Motionister.txt",tlf+";"+navn+";"+alder+";"+status);
-            //return new MotionistSvømmer(navn,alder,tlf,status);
+            fM.tilføjTilArrayList("Motionister.txt",tlf+";"+navn+";"+alder+";"+status);
         }
     }
     private String vælgStatus(){

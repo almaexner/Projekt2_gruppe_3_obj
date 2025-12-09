@@ -22,11 +22,9 @@ public class Stævne {
     public String getTlf(){
         return tlf;
     }
-
     public String getDisciplin(){
         return disciplin;
     }
-
     public String getAlt(){
         return tlf+";"+navn+";"+disciplin+";"+tid+";"+stævneNavn+";"+dato+";"+placering;
     }

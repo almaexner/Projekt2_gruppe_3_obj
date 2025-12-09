@@ -12,20 +12,17 @@ public class KonkSvømmer extends Svømmer{
     public String getDisciplin(){
         return disciplin;
     }
-
     public String getAlt(){
         return tlf+";"+navn+";"+alder+";"+status+";"+disciplin+";"+disciplinTid;
     }
+
     //setter
     public void setDisciplin(String nyDisciplin){
         this.disciplin = nyDisciplin;
     }
-
     public void setDisciplinTid(int nyTid){
         this.disciplinTid = nyTid;
     }
-
-
 
     @Override
     public String lavFilLinje(){
