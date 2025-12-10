@@ -1,4 +1,1 @@
-50501093;Alma;26;aktiv;rygCrawl;0
-50501093;Alma;26;aktiv;rygCrawl;0
-50501093;Alma;26;aktiv;butterfly;0
-87654321;Sven;14;aktiv;crawl;0
+10203040;test;123;passiv;500;butterfly;0
