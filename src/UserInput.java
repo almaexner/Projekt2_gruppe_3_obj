@@ -24,7 +24,7 @@ public class UserInput {
                 break;
             case"3":
                 System.out.println("Slet svømmer");
-
+                gemStævne();
 
         }
     }
@@ -286,4 +286,32 @@ public class UserInput {
         fM.gemTilFil("Motionister.txt");
         fM.gemTilFil("Konkurrencister.txt");
     }
+
+    public void gemStævne() {
+        String tlf="12345678"; String navn="Navn"; String disciplin="crawl";
+
+        String tid="";
+        Scanner inputTid= new Scanner(System.in);
+        System.out.println("Hvilken tid fik svømmeren?");
+        tid=inputTid.nextLine();
+
+        String stævneNavn="";
+        Scanner inputStævne=new Scanner(System.in);
+        System.out.println("Hvilket stævne har svømmeren deltaget i?");
+        stævneNavn=inputStævne.nextLine();
+
+        String dato="";
+        Scanner inputDato=new Scanner(System.in);
+        System.out.println("Hvilke dato har svømmeren deltaget?");
+        dato=inputDato.nextLine();
+
+        String placering="";
+        Scanner inputPlacering=new Scanner(System.in);
+        System.out.println("Hvilken placering har svøammeren?");
+        placering=inputPlacering.nextLine();
+
+        fM.tilføjTilArrayList("Stævner.txt",tlf+";"+navn+";"+disciplin+";"+tid+";"+stævneNavn+";"+dato+";"+placering);
+    }
+
+
 }

@@ -10,12 +10,14 @@ public class Stævne {
     String placering;
 
     //constructor
-    public Stævne(String tlf, String navn, String disciplin, String tid, String stævneNavn, String dato,String placering ) {this.disciplin=disciplin;
-
-    this.tid=tid;
-    this.stævneNavn=stævneNavn;
-    this.dato=dato;
-    this.placering=placering;
+    public Stævne(String tlf, String navn, String disciplin, String tid, String stævneNavn, String dato,String placering ) {
+        this.tlf=tlf;
+        this.navn=navn;
+        this.disciplin=disciplin;
+        this.tid=tid;
+        this.stævneNavn=stævneNavn;
+        this.dato=dato;
+        this.placering=placering;
     }
 
     //getters
