@@ -5,6 +5,7 @@ public abstract class Svømmer {
     protected String tlf;
     protected String status; //aktiv/passiv
     protected String aktivitet; //motionist/konkurrence
+    protected int kontingent;
 
     //Constructor
     public Svømmer(String tlf, String navn, int alder, String status, String aktivitet){
@@ -13,6 +14,7 @@ public abstract class Svømmer {
         this.tlf=tlf;
         this.status=status;
         this.aktivitet=aktivitet;
+        this.kontingent = beregnKontingent();
     }
 
     //getters
@@ -65,7 +67,22 @@ public abstract class Svømmer {
          return kVærdi;
     }
 
-    public String lavFilLinje(){
-        return tlf+";"+navn+";"+status+";"+aktivitet+";"+beregnKontingent();
+    public int beregnKontingent2(){
+        int kVærdi=0;
+        if(status.equals("passiv"))
+            kVærdi =500;
+        else{
+            if(alder<18)
+                kVærdi=1000;
+            if(alder<60)
+                kVærdi=1600;
+            if(alder>=60)
+                kVærdi=1200;
+        }
+        return kVærdi;
+    }
+
+    public String lavFilLinje(){ /// Hvad betyder det for subklasserne at aktivitet er med her?
+        return tlf+";"+navn+";"+status+";"+kontingent;
     }
 }

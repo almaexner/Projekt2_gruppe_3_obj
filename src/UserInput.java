@@ -105,6 +105,5 @@ public class UserInput {
     public void redigerSvømmer(){
         FileManager.loadFiles();
         System.out.println("Indtast svømmers telefonnummer: ");
-
     }
 }

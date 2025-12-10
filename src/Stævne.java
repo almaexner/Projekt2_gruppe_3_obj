@@ -25,18 +25,16 @@ public class Stævne {
     public String getDisciplin(){
         return disciplin;
     }
-    public String getAlt(){
+    /*public String getAlt(){
+        return tlf+";"+navn+";"+disciplin+";"+tid+";"+stævneNavn+";"+dato+";"+placering;
+    }*/
+
+    public String lavFilLinje(){
         return tlf+";"+navn+";"+disciplin+";"+tid+";"+stævneNavn+";"+dato+";"+placering;
     }
-
 
     //setters
     public void setDisciplin(String nyDis){
         this.disciplin=nyDis;
     }
-
-
-
-
-
 }

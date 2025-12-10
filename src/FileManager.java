@@ -69,6 +69,7 @@ public class FileManager {
         try (BufferedWriter bWriter = new BufferedWriter (new FileWriter(filNavn, true))){
             bWriter.write(toWrite);
             bWriter.newLine();
+            System.out.println("Objekt er gemt i filen: "+filNavn);
         } catch (IOException e){
             System.out.println("Fejl ved skrivning til Fil: "+filNavn);
         }
@@ -85,21 +86,20 @@ public class FileManager {
         switch (filNavn){
             case "Motionister.txt":
                 for (int j=0; j<motionistFil.size(); j++){
-                    skrivTilFil(filNavn, motionistFil.get(j).getAlt());
+                    skrivTilFil(filNavn, motionistFil.get(j).lavFilLinje());
                 }
                 break;
             case "Konkurrencister.txt":
                 for (int j=0; j<konkurrencistFil.size(); j++){
-                    skrivTilFil(filNavn, konkurrencistFil.get(j).getAlt());
+                    skrivTilFil(filNavn, konkurrencistFil.get(j).lavFilLinje());
                 }
                 break;
             case "Stævner.txt":
                 for (int j=0; j<stævneFil.size(); j++){
-                    skrivTilFil(filNavn, stævneFil.get(j).getAlt());
+                    skrivTilFil(filNavn, stævneFil.get(j).lavFilLinje());
                 }
                 break;
             }
-            System.out.println("Svømmer er gemt i filen: "+filNavn);
     }
 
     public void redigerArrayList(String filNavn, String findIndex, int retIndex, String retTil){
