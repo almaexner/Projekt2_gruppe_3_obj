@@ -1,6 +1,0 @@
-101020;Alma;22;aktiv;konkurrence;1600
-50501093;Alma J;26;passiv;konkurrence;500
-101010;Natasha;22;aktiv;motionist;1600
-909090;Kurt;15;aktiv;konkurrence;1000
-12345678;Sven;10;passiv;motionist;500
-10203040;Hans;12;aktiv;konkurrence;1000
