@@ -12,19 +12,18 @@ public class UserInput {
         System.out.println("Svømmeklubben Delfinen");
         System.out.println("1. Opret ny svømmer\n" +
                 "2. Rediger\n" +
-                "3. ");
+                "3. Tilføj stævne");
         String userInput = keyboard.nextLine();
         switch (userInput) {
             case "1":
-                System.out.println("Opret ny Svømmer");
+                System.out.println("Opret ny svømmer");
                 opretSvømmer();
                 break;
             case "2":
                 redigerSvømmer();
                 break;
             case"3":
-                System.out.println("Slet svømmer");
-                gemStævne();
+                tilføjStævne();
 
         }
     }
@@ -247,7 +246,7 @@ public class UserInput {
                     String nyAktivitet = keyboard.nextLine().toLowerCase();
                     if (nyAktivitet.equals("motionist")) {
                         MotionistSvømmer nyMs = new MotionistSvømmer(
-                                ksFundet.getTlf(),
+                                ksFundet.getTlf(), //Vi skal stadigvæk bruge samme oplysninger fra svømmeren, undtagen disciplin, da det er nu en motionistsvømmer
                                 ksFundet.getNavn(),
                                 ksFundet.getAlder(),
                                 ksFundet.getStatus());
@@ -262,7 +261,7 @@ public class UserInput {
                 }
                 case 6:
                     System.out.println("Vælg ny disciplin: ");
-                    String nyDisciplin = vælgDisciplin();
+                    String nyDisciplin = vælgDisciplin(); //Kalder på vælgDisciplin()
                     ksFundet.setDisciplin(nyDisciplin);
                     break;
                 case 7:
@@ -287,30 +286,47 @@ public class UserInput {
         fM.gemTilFil("Konkurrencister.txt");
     }
 
-    public void gemStævne() {
-        String tlf="12345678"; String navn="Navn"; String disciplin="crawl";
+    public void tilføjStævne() {
+        System.out.println("Indtast Svømmers telefonnummer: ");
+        String tlf = keyboard.nextLine().trim();
+        KonkSvømmer ksFundet=null;
+        for(KonkSvømmer ks : FileManager.konkurrencistFil){ //Vi skal finde konksvømmeren via tlf.
+            if(ks.getTlf().equals(tlf)){
+                ksFundet=ks;
+                break;
+            }
+        }
+        if(ksFundet==null){
+            System.out.println("Ingen konkurrencesvømmer fundet med dette telefonnummer: ");
+            return;
+        }
+        String navn = ksFundet.getNavn();
+        String disciplin = ksFundet.getDisciplin();
 
-        String tid="";
-        Scanner inputTid= new Scanner(System.in);
-        System.out.println("Hvilken tid fik svømmeren?");
-        tid=inputTid.nextLine();
+        System.out.println("Hvilket stævne har "+ksFundet.getNavn()+" deltaget i?");
+        String stævneNavn=keyboard.nextLine();
 
-        String stævneNavn="";
-        Scanner inputStævne=new Scanner(System.in);
-        System.out.println("Hvilket stævne har svømmeren deltaget i?");
-        stævneNavn=inputStævne.nextLine();
+        System.out.println("Indtast dato: dd/mm/yy");
+        String dato=keyboard.nextLine();
 
-        String dato="";
-        Scanner inputDato=new Scanner(System.in);
-        System.out.println("Hvilke dato har svømmeren deltaget?");
-        dato=inputDato.nextLine();
+        System.out.println("Indtast svømmetid: ");
+        System.out.println("Minutter: ");
+        int min=keyboard.nextInt();
+        System.out.println("Sekunder: ");
+        int sek=keyboard.nextInt();
+        System.out.println("Millisekunder: ");
+        int ms=keyboard.nextInt();
+        keyboard.nextLine();
 
-        String placering="";
-        Scanner inputPlacering=new Scanner(System.in);
-        System.out.println("Hvilken placering har svøammeren?");
-        placering=inputPlacering.nextLine();
+        String tid=min+":"+sek+":"+ms;
 
-        fM.tilføjTilArrayList("Stævner.txt",tlf+";"+navn+";"+disciplin+";"+tid+";"+stævneNavn+";"+dato+";"+placering);
+        System.out.println("Indtast placering: ");
+        String placering=keyboard.nextLine();
+
+        Stævne s = new Stævne(tlf,navn,disciplin,tid,stævneNavn,dato,placering);
+        fM.tilføjTilArrayList("stævneFil", s.lavFilLinje());
+        fM.gemTilFil("Stævner.txt");
+
     }
 
 
