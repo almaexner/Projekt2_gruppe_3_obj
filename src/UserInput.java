@@ -261,9 +261,9 @@ public class UserInput {
                     break;
                 }
                 case 6:
-                    System.out.println("Indtast ny disciplin: ");
-                    String disciplin = vælgDisciplin();
-                    ksFundet.setDisciplin(keyboard.nextLine());
+                    System.out.println("Vælg ny disciplin: ");
+                    String nyDisciplin = vælgDisciplin();
+                    ksFundet.setDisciplin(nyDisciplin);
                     break;
                 case 7:
                     System.out.println(ksFundet);
