@@ -103,7 +103,158 @@ public class UserInput {
         }
     }
     public void redigerSvømmer(){
-        FileManager.loadFiles();
         System.out.println("Indtast svømmers telefonnummer: ");
+        String tlf=keyboard.nextLine().trim();
+        Svømmer s=fM.findSvømmerByTlf(tlf);
+        if(s==null){
+            System.out.println("Ingen svømmer fundet med dette telefonnummer.");
+            return;
+        }
+        MotionistSvømmer msFundet=null;
+        KonkSvømmer ksFundet=null;
+
+        for(MotionistSvømmer ms : FileManager.motionistFil){
+            if(ms.getTlf().equals(tlf)){
+                msFundet=ms;
+                break;
+            }
+        }
+        if(msFundet==null){
+            for(KonkSvømmer ks : FileManager.konkurrencistFil){
+                if(ks.getTlf().equals(tlf)){
+                    ksFundet=ks;
+                    break;
+                }
+            }
+        }
+        if(msFundet!=null){
+            System.out.println("Hvad vil du ændre?\n"+
+                    "1. Telefonnummer\n"+
+                    "2. Navn\n"+
+                    "3. Alder\n+" +
+                    "4. Status\n" +
+                    "5. Aktivitet");
+            int valg=keyboard.nextInt();
+            keyboard.nextLine();
+
+            switch (valg){
+                case 1:
+                    String nytTlf;
+                    while(true){
+                        System.out.println("Indtast nyt telefonnummer: ");
+                        nytTlf=keyboard.nextLine().trim();
+                        if(!nytTlf.matches("^\\d{8}$")){
+                            System.out.println("Ugyldigt telefonnummer.");
+                            continue;
+                        }
+                        break;
+                    }
+                    msFundet.setTlf(nytTlf);
+                    break;
+                case 2:
+                    System.out.println("Indtast nyt navn: ");
+                    msFundet.setNavn(keyboard.nextLine());
+                    break;
+                case 3:
+                    System.out.println("Indtast ny alder: ");
+                    msFundet.setAlder(keyboard.nextInt());
+                    keyboard.nextLine();
+                    break;
+                case 4:
+                    System.out.println("Indtast ny status (aktiv/passiv): ");
+                    msFundet.setStatus(keyboard.nextLine().toLowerCase());
+                    break;
+                case 5:{
+                    System.out.println("Indtast ny aktivitet (motionist/konkurrence): ");
+                    String nyAktivitet=keyboard.nextLine().toLowerCase();
+                    if(nyAktivitet.equals("konkurrence")){
+                        System.out.println("Indtast disciplin: ");
+                        String disciplin=keyboard.nextLine();
+                        KonkSvømmer nyKs=new KonkSvømmer(
+                                msFundet.getTlf(),
+                                msFundet.getNavn(),
+                                msFundet.getAlder(),
+                                msFundet.getStatus(),
+                                disciplin);
+                        FileManager.motionistFil.remove(msFundet); //Vi skal fjerne svømmeren fra motionist.
+                        FileManager.konkurrencistFil.add(nyKs); //For derefter at flytte svømmer i konkurrence.
+                    }else if(nyAktivitet.equals("motionist")){
+                        msFundet.setAktivitet("motionist");
+                    }else{
+                        System.out.println("Ugyldigt valg");
+                    }
+                    break;
+                }
+                default:
+                    System.out.println("Ugyldigt valg.");
+            }
+        }
+        else if(ksFundet!=null){
+            System.out.println("Hvad vil du ændre?\n" +
+                    "1. Telefonnummer\n" +
+                    "2. Navn\n" +
+                    "3. Alder\n" +
+                    "4. Status\n" +
+                    "5. Aktivitet\n" +
+                    "6. Disciplin");
+            int valg=keyboard.nextInt();
+            keyboard.nextLine();
+
+            switch (valg){
+                case 1: {
+                    String nytTlf;
+                    while(true){
+                        System.out.println("Indtast nyt telefonnummer: ");
+                        nytTlf=keyboard.nextLine().trim();
+                        if(!nytTlf.matches("^\\d{8}$")){
+                            System.out.println("Ugyldigt telefonnummer.");
+                            continue;
+                        }
+                        break;
+                    }
+                    ksFundet.setTlf(nytTlf);
+                    break;
+                }
+                case 2:
+                    System.out.println("Indtast nyt navn: ");
+                    ksFundet.setNavn(keyboard.nextLine());
+                    break;
+                case 3:
+                    System.out.println("Indtast ny alder: ");
+                    ksFundet.setAlder(keyboard.nextInt());
+                    keyboard.nextLine();
+                    break;
+                case 4:
+                    System.out.println("Indtast ny status (aktiv/passiv)");
+                    ksFundet.setStatus(keyboard.nextLine().toLowerCase());
+                    break;
+                case 5:{
+                    System.out.println("Indtast ny aktivitet (motionist/konkurrence): ");
+                    String nyAktivitet=keyboard.nextLine().toLowerCase();
+                    if(nyAktivitet.equals("motionist")){
+                        MotionistSvømmer nyMs=new MotionistSvømmer(
+                                ksFundet.getTlf(),
+                                ksFundet.getNavn(),
+                                ksFundet.getAlder(),
+                                ksFundet.getStatus());
+                        FileManager.konkurrencistFil.remove(ksFundet); //vi fjerner svømmeren fra konkurrencefil
+                        FileManager.motionistFil.add(nyMs); //Tilføjer den nye motionist svømmer til motionistfil
+                    }else if(nyAktivitet.equals("konkurrence")){
+                        ksFundet.setAktivitet("konkurrence");
+                    }else{
+                        System.out.println("Ugyldigt input.");
+                    }
+                    break;
+                }
+                case 6:
+                    System.out.println("Indtast ny disciplin: ");
+                    ksFundet.setDisciplin(keyboard.nextLine());
+                    break;
+                default:
+                    System.out.println("Ugyldigt input.");
+            }
+        }
+        fM.gemTilFil("Motionister.txt");
+        fM.gemTilFil("konkurrencister.txt");
     }
 }

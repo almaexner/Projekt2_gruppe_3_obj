@@ -212,6 +212,20 @@ public class FileManager {
             }
         return fundet;
     }
+
+    public Svømmer findSvømmerByTlf(String tlf){
+        for(MotionistSvømmer ms : motionistFil){
+            if(ms.getTlf().equals(tlf)){
+                return ms;
+            }
+            for(KonkSvømmer ks : konkurrencistFil){
+                if(ks.getTlf().equals(tlf)){
+                    return ks;
+                }
+            }
+        }
+        return null; //Hvis tlfnr ikke findes i nogle af filerne.
+    }
     // Ikke sikker på hvad denne skal bruges til
     public String toString(int index){
         return "toString, FileManager";
