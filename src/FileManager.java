@@ -1,6 +1,7 @@
 import java.io.*;
 import java.util.ArrayList;
 
+import static java.lang.Integer.bitCount;
 import static java.lang.Integer.parseInt;
 
 public class FileManager {
@@ -179,7 +180,26 @@ public class FileManager {
     public void indexStævne(int retIndex, String retTil, int i){
         switch (retIndex){
             case 0:
-                stævneFil.get(i);
+                stævneFil.get(i).setTlf(retTil);
+                break;
+            case 1:
+                stævneFil.get(i).setNavn(retTil);
+                break;
+            case 2:
+                stævneFil.get(i).setDisciplin(retTil);
+                break;
+            case 3:
+                stævneFil.get(i).setTid(retTil);
+                break;
+            case 4:
+                stævneFil.get(i).setStævneNavn(retTil);
+                break;
+            case 5:
+                stævneFil.get(i).setDato(retTil);
+                break;
+            case 6:
+                stævneFil.get(i).setPlacering(retTil);
+                break;
         }
     }
     // sletter et objekt fra en ArrayList
@@ -193,8 +213,20 @@ public class FileManager {
                    }
                 }
             case "Konkurrencister.txt":
+                for (int i=0; i<konkurrencistFil.size(); i++){
+                    if (konkurrencistFil.get(i).getTlf().equals(findIndex)){
+                        konkurrencistFil.remove(i);
+                        break;
+                    }
+                }
                 break;
             case "Stævner.txt":
+                for (int i=0; i<stævneFil.size(); i++){
+                    if (stævneFil.get(i).getTlf().equals(findIndex)){
+                        konkurrencistFil.remove(i);
+                        break;
+                    }
+                }
                 break;
         }
         gemTilFil(filNavn);

@@ -22,8 +22,23 @@ public class Stævne {
     public String getTlf(){
         return tlf;
     }
+    public String getNavn(){
+        return navn;
+    }
     public String getDisciplin(){
         return disciplin;
+    }
+    public String getTid(){
+        return tid;
+    }
+    public String getStævneNavn(){
+        return stævneNavn;
+    }
+    public String getDato(){
+        return dato;
+    }
+    public String getPlacering(){
+        return placering;
     }
     /*public String getAlt(){
         return tlf+";"+navn+";"+disciplin+";"+tid+";"+stævneNavn+";"+dato+";"+placering;
@@ -34,7 +49,25 @@ public class Stævne {
     }
 
     //setters
+    public void setTlf(String nyTlf){
+        this.tlf = nyTlf;
+    }
+    public void setNavn(String nyNavn){
+        this.navn = nyNavn;
+    }
     public void setDisciplin(String nyDis){
         this.disciplin=nyDis;
+    }
+    public void setTid(String nyTid){
+        this.tid = nyTid;
+    }
+    public void setStævneNavn(String nyStævneNavn){
+        this.stævneNavn = nyStævneNavn;
+    }
+    public void setDato(String nyDato){
+        this.dato = nyDato;
+    }
+    public void setPlacering(String nyPlacering){
+        this.placering = nyPlacering;
     }
 }
