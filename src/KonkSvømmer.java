@@ -16,11 +16,6 @@ public class KonkSvømmer extends Svømmer{
     public int getDisciplinTid(){
         return disciplinTid;
     }
-
-    @Override
-    public String lavFilLinje(){
-        return super.lavFilLinje()+";"+disciplin+";"+disciplinTid;
-    }
     /*public String getAlt() {
         return tlf + ";" + navn + ";" + alder + ";" + status +";"+kontingent+";" + disciplin + ";" + disciplinTid;
     } */
@@ -31,7 +26,15 @@ public class KonkSvømmer extends Svømmer{
     public void setDisciplinTid(int nyTid){
         this.disciplinTid = nyTid;
     }
+    @Override
+    public String lavFilLinje(){
+        return super.lavFilLinje()+";"+disciplin+";"+disciplinTid;
+    }
 
+    @Override
+    public String toString(){
+        return super.toString()+" Disciplin: "+disciplin+" Tid: "+disciplinTid;
+    }
 
 
 }

@@ -87,7 +87,10 @@ public abstract class Svømmer {
         return kVærdi;
     }
 
-    public String lavFilLinje(){ /// Hvad betyder det for subklasserne at aktivitet er med her?
-        return tlf+";"+navn+";"+alder+";"+status+";"+kontingent;
+    public String lavFilLinje() { /// Hvad betyder det for subklasserne at aktivitet er med her?
+        return tlf + ";" + navn + ";" + alder + ";" + status + ";" + kontingent;
     }
+        public String toString(){
+            return "Navn: "+navn+" Alder: "+alder+" Tlf: "+tlf+" Status: "+status+" Kontingent: "+kontingent;
+        }
 }

@@ -70,7 +70,7 @@ public class FileManager {
         try (BufferedWriter bWriter = new BufferedWriter (new FileWriter(filNavn, true))){
             bWriter.write(toWrite);
             bWriter.newLine();
-            System.out.println("Objekt er gemt i filen: "+filNavn);
+       //     System.out.println("Objekt er gemt i filen: "+filNavn);
         } catch (IOException e){
             System.out.println("Fejl ved skrivning til Fil: "+filNavn);
         }

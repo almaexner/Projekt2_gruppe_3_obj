@@ -1,1 +1,1 @@
-10203040;test;123;passiv;500;butterfly;0
+09876543;Hans;4;aktiv;1600;1600;0

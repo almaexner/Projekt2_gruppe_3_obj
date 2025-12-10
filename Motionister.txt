@@ -1,4 +1,2 @@
-101020;Alma;22;aktiv;
-123123;Estera;23;aktiv;
-191919;Nicky;99;aktiv;
-50501093;Alma;26;aktiv;
+123123;Estera;23;aktiv;1600
+191919;Nicky;99;aktiv;1200
