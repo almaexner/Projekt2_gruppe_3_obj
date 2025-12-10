@@ -50,6 +50,9 @@ public abstract class Svømmer {
     public void setStatus(String nyStatus){
         this.status = nyStatus;
     }
+    public void setKontingent(){
+        this.kontingent = beregnKontingent();
+    }
     public void setAktivitet(String nyAktivitet){
         this.aktivitet = nyAktivitet;
     }

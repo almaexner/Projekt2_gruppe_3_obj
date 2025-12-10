@@ -142,6 +142,7 @@ public class FileManager {
                 break;
             case 2:
                 motionistFil.get(i).setAlder(parseInt(retTil));
+                motionistFil.get(i).setKontingent();
                 break;
             case 3:
                 motionistFil.get(i).setStatus(retTil);
@@ -160,9 +161,11 @@ public class FileManager {
                 break;
             case 2:
                 konkurrencistFil.get(i).setAlder(parseInt(retTil));
+                konkurrencistFil.get(i).setKontingent();
                 break;
             case 3:
                 konkurrencistFil.get(i).setStatus(retTil);
+                konkurrencistFil.get(i).setKontingent();
                 break;
             case 4:
                 konkurrencistFil.get(i).setDisciplin(retTil);
