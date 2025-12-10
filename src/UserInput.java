@@ -313,5 +313,7 @@ public class UserInput {
         fM.tilføjTilArrayList("Stævner.txt",tlf+";"+navn+";"+disciplin+";"+tid+";"+stævneNavn+";"+dato+";"+placering);
     }
 
-
+    public void stævneOversigt(){
+        fM.udskrivAltFraAL("Stævner.txt");
+    }
 }

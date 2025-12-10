@@ -42,6 +42,9 @@ public class Stævne {
     public String getPlacering(){
         return placering;
     }
+    public String getTilUdskriv(){
+        return navn+"\t"+" "+stævneNavn+" "+"\t"+" Dato: "+dato+"\t"+" disciplin: "+disciplin+"   "+"\t"+ "placering: "+placering+"\t"+"med tiden: "+tid;
+    }
     /*public String getAlt(){
         return tlf+";"+navn+";"+disciplin+";"+tid+";"+stævneNavn+";"+dato+";"+placering;
     }*/

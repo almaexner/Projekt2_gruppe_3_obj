@@ -231,17 +231,49 @@ public class FileManager {
         gemTilFil(filNavn);
     }
     // Hvad skal den her helt præcist?
-    public String læsFraArray(String findIndex){
-        int antalArrayLister = 3;
+    public void udskrivAltFraAL(String filNavn){
+        String toString;
+        switch (filNavn){
+            case "Motionister.txt":
+                break;
+            case "Konkurrencister.txt":
+                break;
+            case "Stævner.txt":
+                for (int i=0; i<stævneFil.size(); i++){
+                    /*for (int j=0; j<6; j++){
+                        switch (j){
+                            case 0:
+                                System.out.print(stævneFil.get(i).getNavn()+":\t");
 
-        String fundet = "";
+                                break;
+                            case 1:
 
-        for (int i=0; i<antalArrayLister; i++)
-            switch (i){
-                case 0:
+                                System.out.print(stævneFil.get(i).getStævneNavn()+" ");
 
-            }
-        return fundet;
+                                break;
+                            case 2:
+                                //System.out.printf("%-5s"," ");
+                                System.out.print("Dato:"+stævneFil.get(i).getDato()+" ");
+                                break;
+                            case 3:
+                                //System.out.printf("%-5s"," ");
+                                System.out.print("Disciplin: "+stævneFil.get(i).getDisciplin()+" ");
+                                break;
+                            case 4:
+                                //System.out.printf("%-5s"," ");
+                                System.out.print("Placering: "+stævneFil.get(i).getPlacering()+" ");
+                                break;
+                            case 5:
+                                //System.out.printf("%-5s"," ");
+                                System.out.print("med tiden: "+stævneFil.get(i).getTid());
+                        }
+                    }*/
+                    //System.out.println();
+                    System.out.println(stævneFil.get(i).getTilUdskriv());
+
+                }
+                break;
+        }
     }
 
     public Svømmer findSvømmerByTlf(String tlf){
