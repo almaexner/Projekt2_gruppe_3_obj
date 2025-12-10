@@ -20,6 +20,7 @@ public class UserInput {
                 opretSvømmer();
                 break;
             case "2":
+                redigerSvømmer();
                 break;
             case"3":
                 System.out.println("Slet svømmer");
