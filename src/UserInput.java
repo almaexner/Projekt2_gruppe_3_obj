@@ -330,6 +330,6 @@ public class UserInput {
     }
 
     public void stævneOversigt(){
-        fM.udskrivAltFraAL("Stævner.txt");
+        fM.udskrivAltFraAL("Stævner.txt", "");
     }
 }
