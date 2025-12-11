@@ -20,9 +20,11 @@ public class UserInput {
                 opretSvømmer();
                 break;
             case "2":
+                System.out.println("Rediger svømmer");
                 redigerSvømmer();
                 break;
             case"3":
+                System.out.println("Tilføj stævne");
                 tilføjStævne();
 
         }
