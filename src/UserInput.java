@@ -12,7 +12,8 @@ public class UserInput {
         System.out.println("Svømmeklubben Delfinen");
         System.out.println("1. Opret ny svømmer\n" +
                 "2. Rediger\n" +
-                "3. Tilføj stævne");
+                "3. Tilføj stævne\n"+
+                "4. Lav ændring på svømmers bedste tid i disciplin");
         String userInput = keyboard.nextLine();
         switch (userInput) {
             case "1":
@@ -24,6 +25,10 @@ public class UserInput {
                 break;
             case"3":
                 tilføjStævne();
+            case "4":
+                opdaterTid();
+            default:
+                System.out.println("Ugyldigt input");
 
         }
     }
@@ -331,5 +336,17 @@ public class UserInput {
 
     public void stævneOversigt(){
         fM.udskrivAltFraAL("Stævner.txt", "");
+    }
+
+    public void opdaterTid(){
+        System.out.print("Indtast telefonummer: ");
+        String tlf = keyboard.nextLine();//brugerens input bliver gemt som en string i tlf
+
+        System.out.println("indtast ny tid");
+        String nyTid = keyboard.nextLine();//brugerens input bliver gemt som en string i tid
+
+        fM.redigerArrayList("konkurrencister.txt", tlf, 5, nyTid);//kalder Filemanger metoden, og filen der skal redigeres.
+
+        System.out.println("tid opdateret for tlf" + tlf);
     }
 }

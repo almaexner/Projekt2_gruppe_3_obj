@@ -232,7 +232,6 @@ public class FileManager {
     }
     // Hvad skal den her helt præcist?
     public void udskrivAltFraAL(String filNavn, String valg){
-        String toString;
         String disciplinValg = valg;
         switch (filNavn){
             case "Motionister.txt":
