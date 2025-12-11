@@ -16,6 +16,9 @@ public class KonkSvømmer extends Svømmer{
     public int getDisciplinTid(){
         return disciplinTid;
     }
+    public String getTilUdskriv(){
+        return navn+" "+disciplin+" "+disciplinTid;
+    }
     /*public String getAlt() {
         return tlf + ";" + navn + ";" + alder + ";" + status +";"+kontingent+";" + disciplin + ";" + disciplinTid;
     } */

@@ -231,12 +231,18 @@ public class FileManager {
         gemTilFil(filNavn);
     }
     // Hvad skal den her helt præcist?
-    public void udskrivAltFraAL(String filNavn){
+    public void udskrivAltFraAL(String filNavn, String valg){
         String toString;
+        String disciplinValg = valg;
         switch (filNavn){
             case "Motionister.txt":
                 break;
             case "Konkurrencister.txt":
+                for (int i=0; i<konkurrencistFil.size(); i++){
+                    if(konkurrencistFil.get(i).getDisciplin().equals(disciplinValg)){
+                        System.out.println(stævneFil.get(i).getTilUdskriv());
+                    }
+                }
                 break;
             case "Stævner.txt":
                 for (int i=0; i<stævneFil.size(); i++){

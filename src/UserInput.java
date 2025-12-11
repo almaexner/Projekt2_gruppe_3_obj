@@ -4,15 +4,16 @@ public class UserInput {
     FileManager fM = new FileManager();
     private final Scanner keyboard;
 
-    public UserInput(Scanner keyboard){
-        this.keyboard=keyboard;
+    public UserInput(Scanner keyboard) {
+        this.keyboard = keyboard;
     }
 
     public void menu() {
         System.out.println("Svømmeklubben Delfinen");
         System.out.println("1. Opret ny svømmer\n" +
                 "2. Rediger\n" +
-                "3. Tilføj stævne");
+                "3. Tilføj stævne\n" +
+                "4. Vis disciplins tider");
         String userInput = keyboard.nextLine();
         switch (userInput) {
             case "1":
@@ -22,129 +23,135 @@ public class UserInput {
             case "2":
                 redigerSvømmer();
                 break;
-            case"3":
+            case "3":
                 tilføjStævne();
+            case "4":
+                printDisciplinTider();
 
         }
     }
-    public void opretSvømmer(){
+
+    public void opretSvømmer() {
         System.out.println("Indtast navn: ");
-        String navn=keyboard.nextLine();
+        String navn = keyboard.nextLine();
         System.out.println("Indtast alder: ");
-        int alder=keyboard.nextInt();
+        int alder = keyboard.nextInt();
         keyboard.nextLine();
 
         String tlf;
-        while(true){
+        while (true) {
             System.out.println("Indtast gyldigt telefonnummer: ");
-            tlf=keyboard.nextLine().trim();
-            if(tlf.matches("^\\d{8}$")) {
+            tlf = keyboard.nextLine().trim();
+            if (tlf.matches("^\\d{8}$")) {
                 break;
-            }else{
+            } else {
                 System.out.println("Ugyldigt telefonnummer. Prøv igen.");
             }
         }
-        String status=vælgStatus();
-        String aktivitet=vælgAktivitet();
-        if(aktivitet.equals("konkurrence")){
-            String disciplin=vælgDisciplin();
-            fM.tilføjTilArrayList("Konkurrencister.txt", tlf+";"+navn+";"+alder+";"+status+";"+disciplin);
-        }else{
-            fM.tilføjTilArrayList("Motionister.txt",tlf+";"+navn+";"+alder+";"+status);
+        String status = vælgStatus();
+        String aktivitet = vælgAktivitet();
+        if (aktivitet.equals("konkurrence")) {
+            String disciplin = vælgDisciplin();
+            fM.tilføjTilArrayList("Konkurrencister.txt", tlf + ";" + navn + ";" + alder + ";" + status + ";" + disciplin);
+        } else {
+            fM.tilføjTilArrayList("Motionister.txt", tlf + ";" + navn + ";" + alder + ";" + status);
         }
     }
-    private String vælgStatus(){
-        while(true){
-            System.out.println("Vælg status: \n"+
+
+    private String vælgStatus() {
+        while (true) {
+            System.out.println("Vælg status: \n" +
                     "1. aktiv\n" +
                     "2. passiv");
-            int valg=keyboard.nextInt();
+            int valg = keyboard.nextInt();
             keyboard.nextLine();
-            if(valg==1)
+            if (valg == 1)
                 return "aktiv";
-            if(valg==2)
+            if (valg == 2)
                 return "passiv";
             System.out.println("Forkert input. Prøv igen.");
         }
     }
-    private String vælgAktivitet(){
-        while(true){
-            System.out.println("Vælg aktivitet: \n"+
-                    "1. motionist \n"+
+
+    private String vælgAktivitet() {
+        while (true) {
+            System.out.println("Vælg aktivitet: \n" +
+                    "1. motionist \n" +
                     "2. konkurrence");
-            int valg= keyboard.nextInt();
+            int valg = keyboard.nextInt();
             keyboard.nextLine();
-            if(valg==1)
+            if (valg == 1)
                 return "motionist";
-            if(valg==2)
+            if (valg == 2)
                 return "konkurrence";
             System.out.println("Forkert input. Prøv igen.");
         }
     }
 
-    private String vælgDisciplin(){
-        while(true){
-            System.out.println("Vælg disciplin: \n"+
-                    "1. Rygcrawl\n"+
-                    "2. Butterfly\n"+
-                    "3. Brystsvømning\n"+
+    private String vælgDisciplin() {
+        while (true) {
+            System.out.println("Vælg disciplin: \n" +
+                    "1. Rygcrawl\n" +
+                    "2. Butterfly\n" +
+                    "3. Brystsvømning\n" +
                     "4. Crawl");
-            int valg= keyboard.nextInt();
+            int valg = keyboard.nextInt();
             keyboard.nextLine();
-            if(valg==1)
+            if (valg == 1)
                 return "rygcrawl";
-            if(valg==2)
+            if (valg == 2)
                 return "butterfly";
-            if(valg==3)
+            if (valg == 3)
                 return "brystsvømning";
-            if(valg==4)
+            if (valg == 4)
                 return "crawl";
             System.out.println("Forkert input. Prøv igen.");
         }
     }
-    public void redigerSvømmer(){
+
+    public void redigerSvømmer() {
         System.out.println("Indtast svømmers telefonnummer: ");
-        String tlf=keyboard.nextLine().trim();
-        Svømmer s=fM.findSvømmerByTlf(tlf);
-        if(s==null){
+        String tlf = keyboard.nextLine().trim();
+        Svømmer s = fM.findSvømmerByTlf(tlf);
+        if (s == null) {
             System.out.println("Ingen svømmer fundet med dette telefonnummer.");
             return;
         }
-        MotionistSvømmer msFundet=null;
-        KonkSvømmer ksFundet=null;
+        MotionistSvømmer msFundet = null;
+        KonkSvømmer ksFundet = null;
 
-        for(MotionistSvømmer ms : FileManager.motionistFil){
-            if(ms.getTlf().equals(tlf)){
-                msFundet=ms;
+        for (MotionistSvømmer ms : FileManager.motionistFil) {
+            if (ms.getTlf().equals(tlf)) {
+                msFundet = ms;
                 break;
             }
         }
-        if(msFundet==null){
-            for(KonkSvømmer ks : FileManager.konkurrencistFil){
-                if(ks.getTlf().equals(tlf)){
-                    ksFundet=ks;
+        if (msFundet == null) {
+            for (KonkSvømmer ks : FileManager.konkurrencistFil) {
+                if (ks.getTlf().equals(tlf)) {
+                    ksFundet = ks;
                     break;
                 }
             }
         }
-        if(msFundet!=null){ //Redigering af motionistsvømmer
-            System.out.println("Hvad vil du ændre?\n"+
-                    "1. Telefonnummer\n"+
-                    "2. Navn\n"+
+        if (msFundet != null) { //Redigering af motionistsvømmer
+            System.out.println("Hvad vil du ændre?\n" +
+                    "1. Telefonnummer\n" +
+                    "2. Navn\n" +
                     "3. Alder\n" +
                     "4. Status\n" +
                     "5. Aktivitet\n" +
                     "6. Slet svømmer");
-            int valg=keyboard.nextInt();
+            int valg = keyboard.nextInt();
             keyboard.nextLine();
 
-            switch (valg){
+            switch (valg) {
                 case 1:
                     String nytTlf;
-                    while(true){
+                    while (true) {
                         System.out.println("Indtast nyt telefonnummer: ");
-                        nytTlf=keyboard.nextLine().trim();
-                        if(!nytTlf.matches("^\\d{8}$")){
+                        nytTlf = keyboard.nextLine().trim();
+                        if (!nytTlf.matches("^\\d{8}$")) {
                             System.out.println("Ugyldigt telefonnummer.");
                             continue;
                         }
@@ -201,7 +208,7 @@ public class UserInput {
                     System.out.println("Ugyldigt valg.");
             }
         } //redigering af motionistsvømmer slut
-        else if(ksFundet!=null) { //redigering af konkurrencesvømmer
+        else if (ksFundet != null) { //redigering af konkurrencesvømmer
             System.out.println("Hvad vil du ændre?\n" +
                     "1. Telefonnummer\n" +
                     "2. Navn\n" +
@@ -289,47 +296,74 @@ public class UserInput {
     public void tilføjStævne() {
         System.out.println("Indtast Svømmers telefonnummer: ");
         String tlf = keyboard.nextLine().trim();
-        KonkSvømmer ksFundet=null;
-        for(KonkSvømmer ks : FileManager.konkurrencistFil){ //Vi skal finde konksvømmeren via tlf.
-            if(ks.getTlf().equals(tlf)){
-                ksFundet=ks;
+        KonkSvømmer ksFundet = null;
+        for (KonkSvømmer ks : FileManager.konkurrencistFil) { //Vi skal finde konksvømmeren via tlf.
+            if (ks.getTlf().equals(tlf)) {
+                ksFundet = ks;
                 break;
             }
         }
-        if(ksFundet==null){
+        if (ksFundet == null) {
             System.out.println("Ingen konkurrencesvømmer fundet med dette telefonnummer: ");
             return;
         }
         String navn = ksFundet.getNavn();
         String disciplin = ksFundet.getDisciplin();
 
-        System.out.println("Hvilket stævne har "+ksFundet.getNavn()+" deltaget i?");
-        String stævneNavn=keyboard.nextLine();
+        System.out.println("Hvilket stævne har " + ksFundet.getNavn() + " deltaget i?");
+        String stævneNavn = keyboard.nextLine();
 
         System.out.println("Indtast dato: dd/mm/yy");
-        String dato=keyboard.nextLine();
+        String dato = keyboard.nextLine();
 
         System.out.println("Indtast svømmetid: ");
         System.out.println("Minutter: ");
-        int min=keyboard.nextInt();
+        int min = keyboard.nextInt();
         System.out.println("Sekunder: ");
-        int sek=keyboard.nextInt();
+        int sek = keyboard.nextInt();
         System.out.println("Millisekunder: ");
-        int ms=keyboard.nextInt();
+        int ms = keyboard.nextInt();
         keyboard.nextLine();
 
-        String tid=min+":"+sek+":"+ms;
+        String tid = min + ":" + sek + ":" + ms;
 
         System.out.println("Indtast placering: ");
-        String placering=keyboard.nextLine();
+        String placering = keyboard.nextLine();
 
-        Stævne s = new Stævne(tlf,navn,disciplin,tid,stævneNavn,dato,placering);
+        Stævne s = new Stævne(tlf, navn, disciplin, tid, stævneNavn, dato, placering);
         fM.tilføjTilArrayList("stævneFil", s.lavFilLinje());
         fM.gemTilFil("Stævner.txt");
 
     }
 
-    public void stævneOversigt(){
-        fM.udskrivAltFraAL("Stævner.txt");
+    public void stævneOversigt() {
+        fM.udskrivAltFraAL("Stævner.txt", "");
+    }
+
+    public void printDisciplinTider() {
+        String disciplinValg = "";
+        System.out.println("Vælg disciplin: \n" +
+                "1. Rygcrawl \n" +
+                "2. Butterfly\n" +
+                "3. Brystsvømning\n" +
+                "4. Crawl");
+        int disciplin = keyboard.nextInt();
+        keyboard.nextLine();
+        switch (disciplin) {
+            case 1:
+                disciplinValg = "rygcrawl";
+                break;
+            case 2:
+                disciplinValg = "butterfly";
+                break;
+            case 3:
+                disciplinValg = "brystsvømning";
+                break;
+            case 4:
+                disciplinValg = "crawl";
+            default:
+                System.out.println("Ugyldigt input");
+        }
+        fM.udskrivAltFraAL("Konkurrencister.txt", disciplinValg);
     }
 }
