@@ -6,6 +6,7 @@ public class Main {
         Scanner keyboard=new Scanner(System.in);
         UserInput test=new UserInput(keyboard);
         test.menu();
+        System.out.println("test");
 
     }
 }

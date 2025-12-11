@@ -1,2 +1,4 @@
 123123;Estera;23;aktiv;1600
 191919;Nicky;99;aktiv;1200
+62958375;Knud;6;aktiv;1600
+62846583;Ib;6;passiv;500
